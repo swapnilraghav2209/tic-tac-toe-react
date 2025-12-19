@@ -85,15 +85,15 @@ const Board = () => {
         setXIsNext(true);
     };
 
-    // Auto-reset game after win
+    // Auto-reset game after win or draw
     useEffect(() => {
-        if (winner && autoReset) {
+        if ((winner || isDraw) && autoReset) {
             const timer = setTimeout(() => {
                 resetGame();
             }, 2500); // Reset after 2.5 seconds
             return () => clearTimeout(timer);
         }
-    }, [winner, autoReset]);
+    }, [winner, isDraw, autoReset]);
 
     // Reset scores
     const resetScores = () => {
@@ -156,7 +156,7 @@ const Board = () => {
                         onChange={(e) => setAutoReset(e.target.checked)}
                         style={{ width: '1.2rem', height: '1.2rem', cursor: 'pointer' }}
                     />
-                    Auto-reset after win
+                    Auto-reset game
                 </label>
             </div>
         </div>
