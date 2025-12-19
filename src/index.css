@@ -7,8 +7,10 @@
   --board-bg: #1e293b;
   --cell-bg: #334155;
   --cell-hover: #475569;
-  --x-color: #22d3ee; /* Cyan for X */
-  --o-color: #f472b6; /* Pink for O */
+  --x-color: #22d3ee;
+  /* Cyan for X */
+  --o-color: #f472b6;
+  /* Pink for O */
   --font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
@@ -66,7 +68,8 @@ body {
   font-weight: 600;
   margin-bottom: 1rem;
   color: var(--text-color);
-  height: 2rem; /* Reserve height to prevent layout jump */
+  height: 2rem;
+  /* Reserve height to prevent layout jump */
 }
 
 .board {
@@ -126,7 +129,8 @@ body {
   color: white;
   background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
   border: none;
-  border-radius: 9999px; /* Pill shape */
+  border-radius: 9999px;
+  /* Pill shape */
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
   box-shadow: 0 4px 12px rgba(56, 189, 248, 0.3);
@@ -139,4 +143,112 @@ body {
 
 .reset-button:active {
   transform: scale(0.95);
+}
+
+.reset-scores-button {
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(135deg, var(--accent-color), var(--o-color));
+  border: none;
+  border-radius: 9999px;
+  /* Pill shape */
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 12px rgba(192, 132, 252, 0.3);
+}
+
+.reset-scores-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(192, 132, 252, 0.4);
+}
+
+.reset-scores-button:active {
+  transform: scale(0.95);
+}
+
+/* Strike Line Styles */
+.board {
+  position: relative;
+}
+
+.strike-line {
+  position: absolute;
+  background-color: white;
+  /* Or a color that contrasts well */
+  border-radius: 4px;
+  transform-origin: left;
+  z-index: 10;
+  pointer-events: none;
+  /* Let clicks pass through */
+  transition: width 0.3s ease-in-out;
+}
+
+/* Row Strikes */
+.strike-row-0 {
+  top: 15%;
+  /* (80/2)/260 ~ 15.3% */
+  left: 0;
+  width: 100%;
+  height: 6px;
+}
+
+.strike-row-1 {
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 6px;
+}
+
+.strike-row-2 {
+  top: 85%;
+  /* (260 - 40)/260 ~ 84.6% */
+  left: 0;
+  width: 100%;
+  height: 6px;
+}
+
+/* Column Strikes */
+.strike-col-0 {
+  left: 15%;
+  top: 0;
+  height: 100%;
+  width: 6px;
+}
+
+.strike-col-1 {
+  left: 50%;
+  top: 0;
+  height: 100%;
+  width: 6px;
+}
+
+.strike-col-2 {
+  left: 85%;
+  top: 0;
+  height: 100%;
+  width: 6px;
+}
+
+/* Diagonal Strikes */
+.strike-diag-0 {
+  top: 0;
+  left: 0;
+  width: 141%;
+  /* sqrt(2) * 100% */
+  height: 6px;
+  transform: rotate(45deg);
+  transform-origin: top left;
+  /* Adjust intersection to center */
+}
+
+.strike-diag-1 {
+  top: 0;
+  right: 0;
+  width: 141%;
+  height: 6px;
+  transform: rotate(-45deg);
+  transform-origin: top right;
 }
